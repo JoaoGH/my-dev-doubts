@@ -9,6 +9,7 @@ Tem vários caminhos possiveis para essa solução que estão listados nesse dir
 - MapSupplier
 - GenericFactory (Class registry)
 - ServiceLoaderFactory
+- Reflection
 
 ---
 
@@ -70,6 +71,25 @@ Usar o `ServiceLoader` do JDK para descobrir implementações listadas em `META-
 
 **Cenário indicado**
 - Sistemas extensíveis; libs/SDKs; quando terceiros fornecem implementações.
+
+---
+
+### ReflectionFactory
+**Ideia:**  
+Usar `Class.forName` e convenção de nomes/pacotes para resolver e instanciar dinamicamente.
+
+**Vantagens**
+- Não precisa manter mapa ou enum manualmente.
+- Adicionar nova classe com nome certo já funciona.
+
+**Desvantagens**
+- Frágil a refactors/renomes.
+- Erros aparecem só em runtime.
+- Overhead de reflection.
+
+**Cenário indicado**
+- Protótipos, ferramentas internas, scripts, CLIs simples.
+- Quando manter um registry fixo é mais custoso que usar convenção.
 
 ---
 
