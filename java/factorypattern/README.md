@@ -8,6 +8,7 @@ Tem vários caminhos possiveis para essa solução que estão listados nesse dir
 
 - MapSupplier
 - GenericFactory (Class registry)
+- ServiceLoaderFactory
 
 ---
 
@@ -52,9 +53,28 @@ Manter um registry `Class<T> -> Supplier<? extends T>`, permitindo criar instân
 - Útil em camadas internas e utilitários, quando já se possui a `Class` em mãos.
 - Bom para evitar typos em strings.
 
+---
+
+### ServiceLoaderFactory
+**Ideia:**  
+Usar o `ServiceLoader` do JDK para descobrir implementações listadas em `META-INF/services`.
+
+**Vantagens**
+- Extensível: basta adicionar o provider no classpath.
+- Ótimo para bibliotecas, SDKs e cenários de plugin.
+- Não requer código extra no factory.
+
+**Desvantagens**
+- Requer configuração correta dos arquivos SPI.
+- Estrutura mais cerimonial que o `Map`.
+
+**Cenário indicado**
+- Sistemas extensíveis; libs/SDKs; quando terceiros fornecem implementações.
+
+---
 
 # Referências / References
 - [Refactoring Guru - Factory Method](https://refactoring.guru/design-patterns/factory-method)  
 - [Supplier Interface - Java Docs](https://docs.oracle.com/javase/8/docs/api/java/util/function/Supplier.html)  
-
+- [ServiceLoader - Java Docs](https://docs.oracle.com/javase/8/docs/api/java/util/ServiceLoader.html)  
 

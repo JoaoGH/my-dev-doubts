@@ -3,6 +3,7 @@ package factorypattern;
 
 import factorypattern.factory.GenericFactory;
 import factorypattern.factory.MapSupplier;
+import factorypattern.factory.ServiceLoaderFactory;
 import factorypattern.resources.Boleto;
 import factorypattern.resources.Cartao;
 import factorypattern.resources.PaymentProcessor;
@@ -18,6 +19,9 @@ public class Solution {
 
 		System.out.println("\n- Generic");
 		demoGenericFactory();
+
+		System.out.println("\n- ServiceLoader Factory");
+		demoServiceLoaderFactory();
 	}
 
 	private static void demoMapSupplier() {
@@ -44,6 +48,17 @@ public class Solution {
 		g1.process();
 		g2.process();
 		g3.process();
+	}
+
+	private static void demoServiceLoaderFactory() {
+		ServiceLoaderFactory slf = new ServiceLoaderFactory();
+		PaymentProcessor p1 = slf.create("pix");
+		PaymentProcessor p2 = slf.create("boleto");
+		PaymentProcessor p3 = slf.create("cartao");
+
+		p1.process();
+		p2.process();
+		p3.process();
 	}
 
 }
