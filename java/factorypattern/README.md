@@ -7,6 +7,7 @@ Como criar um Factory em Java sem usar `if/else` ou `switch`?
 Tem vários caminhos possiveis para essa solução que estão listados nesse diretório.
 
 - MapSupplier
+- GenericFactory (Class registry)
 
 ---
 
@@ -33,6 +34,24 @@ Isso elimina a necessidade de `if/else` ou `switch-case`.
 - Quando se deseja baixo acoplamento e clareza no código.
 
 ---
+
+### GenericFactory (Class registry)
+**Ideia:**  
+Manter um registry `Class<T> -> Supplier<? extends T>`, permitindo criar instâncias de forma type-safe.
+
+**Vantagens**
+- Evita o uso de `String` mágicas.
+- Tipagem forte (type-safe).
+- Integra bem com APIs que já trabalham com `Class<T>`.
+
+**Desvantagens**
+- Ainda exige registro manual.
+- Não resolve nomes dinamicamente.
+
+**Cenário indicado**
+- Útil em camadas internas e utilitários, quando já se possui a `Class` em mãos.
+- Bom para evitar typos em strings.
+
 
 # Referências / References
 - [Refactoring Guru - Factory Method](https://refactoring.guru/design-patterns/factory-method)  
