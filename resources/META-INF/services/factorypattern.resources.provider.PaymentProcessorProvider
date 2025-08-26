@@ -1,0 +1,3 @@
+factorypattern.resources.provider.PixProvider
+factorypattern.resources.provider.BoletoProvider
+factorypattern.resources.provider.CartaoProvider
