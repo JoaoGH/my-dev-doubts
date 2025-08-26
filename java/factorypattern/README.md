@@ -10,6 +10,7 @@ Tem vários caminhos possiveis para essa solução que estão listados nesse dir
 - GenericFactory (Class registry)
 - ServiceLoaderFactory
 - Reflection
+- EnumFactory
 
 ---
 
@@ -90,6 +91,24 @@ Usar `Class.forName` e convenção de nomes/pacotes para resolver e instanciar d
 **Cenário indicado**
 - Protótipos, ferramentas internas, scripts, CLIs simples.
 - Quando manter um registry fixo é mais custoso que usar convenção.
+
+---
+
+### EnumFactory
+**Ideia:**  
+Usar um `enum` que encapsula os `Supplier` de cada implementação (ex.: `PIX(Pix::new)`).
+
+**Vantagens**
+- Centraliza as opções em um único lugar.
+- Super simples e legível.
+- Tipagem forte com enum.
+
+**Desvantagens**
+- Não pode ser estendido em runtime.
+- Precisa recompilar para adicionar novos tipos.
+
+**Cenário indicado**
+- Cenários fechados/estáveis (ex.: meios de pagamento fixos, tipos de estratégia, status de workflow).
 
 ---
 

@@ -1,14 +1,8 @@
 package factorypattern;
 
 
-import factorypattern.factory.GenericFactory;
-import factorypattern.factory.MapSupplier;
-import factorypattern.factory.ReflectionFactory;
-import factorypattern.factory.ServiceLoaderFactory;
-import factorypattern.resources.Boleto;
-import factorypattern.resources.Cartao;
-import factorypattern.resources.PaymentProcessor;
-import factorypattern.resources.Pix;
+import factorypattern.factory.*;
+import factorypattern.resources.*;
 
 public class Solution {
 
@@ -26,6 +20,9 @@ public class Solution {
 
 		System.out.println("\n- ReflectionFactory");
 		demoReflectionFactory();
+
+		System.out.println("\n- EnumFactory");
+		demoEnumFactory();
 	}
 
 	private static void demoMapSupplier() {
@@ -73,6 +70,16 @@ public class Solution {
 		paymentProcessor1.process();
 		paymentProcessor2.process();
 		paymentProcessor3.process();
+	}
+
+	private static void demoEnumFactory() {
+		PaymentProcessor p1 = EnumFactory.create(PaymentType.PIX);
+		PaymentProcessor p2 = EnumFactory.create(PaymentType.BOLETO);
+		PaymentProcessor p3 = EnumFactory.create(PaymentType.CARTAO);
+
+		p1.process();
+		p2.process();
+		p3.process();
 	}
 
 }
